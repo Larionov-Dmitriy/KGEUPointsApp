@@ -1,0 +1,68 @@
+{% extends 'Points/base.html' %}
+
+{% block loadstatic %}
+{% load static %}
+{% endblock loadstatic %}
+
+{% block title %}
+<title>Профиль</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock css %}
+
+{% block subtitle %}
+
+{% endblock subtitle %}
+
+{% block content %}
+<div class="card">
+        <div class="image-block">
+            {% if user.photo %}
+            <img src="{{ user.photo.url }}" alt="" class="profile-image">
+            {% else %}
+            <div class="non-image">
+                <div class="non-image-circle">
+                </div>
+            </div>
+            {% endif %}
+            <p>
+                @{{ user.username }}
+            </p>
+            <hr>
+            <div class="logout-button">
+                <a href="{% url 'update' %}">
+                    Редактировать профиль
+                </a>
+            </div>
+        </div>
+        <div class="info">
+            <div class="st_name">
+                {{ user.first_name }} {{ user.second_name }} {{ user.third_name }}
+            </div>
+            <div class="st_email">
+                {{ user.email }}
+            </div>
+            <p>
+                <div style="font-size: 18px;">
+                    Группа: {{ user.group }}
+                </div>
+                <div style="font-size: 18px;">
+                    Институт: {{ user.institute }}
+                </div>
+                <div style="font-size: 18px;">
+                    Общежитие №: {{ user.hostel }}
+                </div>
+            </p>
+        </div>
+        <div class="footer-info">
+            <hr>
+            <div class="logout-button">
+                <a href="{% url 'logout' %}">
+                    Выйти
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
